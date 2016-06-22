@@ -76,7 +76,7 @@ public class AppController implements ActionListener {
     
     private void ver_coleccion(){
         Object[] row = new Object[6];
-        access.ver_colleccion().stream().map((col) -> {
+        access.verColleccion().stream().map((col) -> {
             row[0] = col.getId();
             return col;
         }).map((col) -> {
@@ -114,7 +114,7 @@ public class AppController implements ActionListener {
         if(nombre.isEmpty() || app.isEmpty() || apm.isEmpty() || sexo.isEmpty() || cumpleaños.isEmpty()){
             mensaje_error("Completa todos los campos ._.");
         } else {
-            access.insertar_documento(nombre, app, apm, sexo, cumpleaños);
+            access.insertarDocumento(nombre, app, apm, sexo, cumpleaños);
             mensaje("Documento ingresado correctamente :D");
         }
         nuevo();
@@ -153,7 +153,7 @@ public class AppController implements ActionListener {
         if(nombre.isEmpty() || app.isEmpty() || apm.isEmpty() || sexo.isEmpty() || cumpleaños.isEmpty()){
             mensaje_error("Completa todos los campos ._.");
         } else {
-            access.actualizar_documento(application.m_datos.getValueAt(application.tbDatos.getSelectedRow(), 0).toString(), nombre, app, apm, sexo, cumpleaños);
+            access.actualizarDocumento(application.m_datos.getValueAt(application.tbDatos.getSelectedRow(), 0).toString(), nombre, app, apm, sexo, cumpleaños);
             mensaje("Documento actualizado correctamente :D");
             nuevo();
         }        
@@ -164,7 +164,7 @@ public class AppController implements ActionListener {
             int fila = application.tbDatos.getSelectedRow();
             String _id = application.m_datos.getValueAt(fila, 0).toString();
             String nombre = application.m_datos.getValueAt(fila, 1).toString();
-            access.eliminar_documento(_id, nombre);
+            access.eliminarDocumento(_id, nombre);
         } catch(Exception e){
             mensaje_error("Selecciona un documento ._.");
         }
