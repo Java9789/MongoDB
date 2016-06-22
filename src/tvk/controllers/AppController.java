@@ -11,7 +11,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import org.jvnet.substance.skin.SubstanceRavenGraphiteGlassLookAndFeel;
 import tvk.models.AccessColPrueba;
-import tvk.models.ColPrueba;
 import tvk.view.App;
 
 public class AppController implements ActionListener {
@@ -47,7 +46,7 @@ public class AppController implements ActionListener {
         application.tbDatos.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                modificar_documento();
+                modificarDocumento();
             }
         });
     }
@@ -58,16 +57,16 @@ public class AppController implements ActionListener {
         switch(command){
             case "Guardar":
                 if(flag == true){
-                    agregar_documento();
+                    agregarDocumento();
                 } else {
-                    actualizar_documento();
+                    actualizarDocumento();
                 }
                 break;
             case "Eliminar":
-                eliminar_documento();
+                eliminarDocumento();
                 break;
             case "Modificar":
-                modificar_documento();
+                modificarDocumento();
                 break;
             case "Nuevo":
                 nuevo();
@@ -101,7 +100,7 @@ public class AppController implements ActionListener {
         application.tbDatos.setModel(application.m_datos);
     }
     
-    private void agregar_documento(){
+    private void agregarDocumento(){
         String nombre = application.txtNombre.getText().trim();
         String app = application.txtApp.getText().trim();
         String apm = application.txtApm.getText().trim();
@@ -121,7 +120,7 @@ public class AppController implements ActionListener {
         nuevo();
     }
     
-    private void modificar_documento(){
+    private void modificarDocumento(){
         try {
             int fila = application.tbDatos.getSelectedRow();
             application.txtNombre.setText(application.m_datos.getValueAt(fila, 1).toString());
@@ -140,7 +139,7 @@ public class AppController implements ActionListener {
         }
     }
     
-    private void actualizar_documento(){
+    private void actualizarDocumento(){
         String nombre = application.txtNombre.getText().trim();
         String app = application.txtApp.getText().trim();
         String apm = application.txtApm.getText().trim();
@@ -160,7 +159,7 @@ public class AppController implements ActionListener {
         }        
     }
     
-    private void eliminar_documento(){
+    private void eliminarDocumento(){
         try {
             int fila = application.tbDatos.getSelectedRow();
             String _id = application.m_datos.getValueAt(fila, 0).toString();
@@ -179,12 +178,12 @@ public class AppController implements ActionListener {
         application.txtCumpleaños.setText("");
         application.btnGroup.clearSelection(); 
         application.txtNombre.requestFocus();
-        limpiar_tabla();
+        limpiarTabla();
         ver_coleccion();
         flag = true;
     }
     
-    private void limpiar_tabla(){
+    private void limpiarTabla(){
         int filas = application.tbDatos.getRowCount();
         for(int i=0;i<filas;i++){
             application.m_datos.removeRow(0);
