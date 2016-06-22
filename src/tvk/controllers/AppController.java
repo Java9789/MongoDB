@@ -76,20 +76,28 @@ public class AppController implements ActionListener {
     }    
     
     private void ver_coleccion(){
-        /* Object[][] data = access.ver_coleccion();
-        for(Object[] row : data){
-            application.m_datos.addRow(row);
-        } */
         Object[] row = new Object[6];
-        for(ColPrueba col : access.ver_colleccion()){
+        access.ver_colleccion().stream().map((col) -> {
             row[0] = col.getId();
+            return col;
+        }).map((col) -> {
             row[1] = col.getNombre();
+            return col;
+        }).map((col) -> {
             row[2] = col.getApp();
+            return col;
+        }).map((col) -> {
             row[3] = col.getApm();
+            return col;
+        }).map((col) -> {
             row[4] = col.getSexo();
+            return col;
+        }).map((col) -> {
             row[5] = col.getCumpleaños();
+            return col;
+        }).forEach((_item) -> {
             application.m_datos.addRow(row);
-        }
+        });
         application.tbDatos.setModel(application.m_datos);
     }
     
