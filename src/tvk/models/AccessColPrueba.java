@@ -23,7 +23,7 @@ public class AccessColPrueba {
         }
     }        
     
-    public Object[][] ver_coleccion(){        
+    public Object[][] verColeccion(){        
         cursor = collection.find();        
         int row = cursor.count();
         Object[][] data = new Object[row][6];
@@ -41,7 +41,7 @@ public class AccessColPrueba {
         return data;
     }
     
-    public List<ColPrueba> ver_colleccion(){
+    public List<ColPrueba> verColleccion(){
         List<ColPrueba> col_prueba = new ArrayList<>();
         cursor = collection.find();
         while(cursor.hasNext()){
@@ -51,7 +51,7 @@ public class AccessColPrueba {
         return col_prueba;
     }
     
-    public void insertar_documento(String nombre, String app, String apm, String sexo, String cumpleaños){
+    public void insertarDocumento(String nombre, String app, String apm, String sexo, String cumpleaños){
         BasicDBObject insert = new BasicDBObject("nombre", nombre).
             append("app", app).
             append("apm", apm).
@@ -60,14 +60,14 @@ public class AccessColPrueba {
         collection.insert(insert);
     }
     
-    public void eliminar_documento(String _id, String nombre){
+    public void eliminarDocumento(String _id, String nombre){
         BasicDBObject doc = new BasicDBObject();
         doc.put("_id", _id);
         doc.put("nombre", nombre);
         collection.remove(doc);
     }
     
-    public void actualizar_documento(String _id, String nombre, String app, String apm, String sexo, String cumpleaños){
+    public void actualizarDocumento(String _id, String nombre, String app, String apm, String sexo, String cumpleaños){
         BasicDBObject doc = new BasicDBObject();
         doc.put("_id", _id);        
         BasicDBObject upd = new BasicDBObject();
@@ -93,10 +93,5 @@ public class AccessColPrueba {
         arr += ")";
         System.out.println(arr);
     }
-    
-    /* public static void main(String... args){
-        AccessMongo.print_r(new AccessMongo().ver_coleccion());
-        //System.out.print(new AccessMongo().ver_coleccion());
-    } */
     
 }
